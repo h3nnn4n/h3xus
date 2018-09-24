@@ -10,6 +10,20 @@ var world;
 var particles = [];
 
 function setup() {
+  setup_canvas();
+
+  colorMode(HSB);
+  engine = Engine.create();
+  world = engine.world;
+
+  engine.world.gravity.y = 0;
+
+  spawn_particles(10);
+
+  textFont('Monaco', 40);
+}
+
+function setup_canvas() {
   var main = $('body');
 
   var canvas = createCanvas(main.width(), main.height());
@@ -24,29 +38,26 @@ function setup() {
     marginLeft: 0, marginTop: 0,
     top: 0, left: 0
   });
-
-  colorMode(HSB);
-  engine = Engine.create();
-  world = engine.world;
-
-  engine.world.gravity.y = 0;
-
-  spawn_particles();
-  //setControls();
 }
 
-function spawn_particles() {
-  for (var i = 0; i < 250; i++) {
-    particles.push(
-      new Particle(
-        random(100, width - 100),
-        random(100, height - 100)
-      )
-    );
+function spawn_particles(n) {
+  for (var i = 0; i < n; i++) {
+    spawn_particle();
   }
+}
 
-  for (var p in particles) {
-    particles[p].random_move();
+function spawn_particle() {
+  var p = new Particle(
+      random(100, width - 100),
+      random(100, height - 100)
+    );
+  particles.push(p);
+  p.random_move();
+}
+
+function kill_particles(n) {
+  for (var i = 0; i < n; i++) {
+    particles.pop();
   }
 }
 
@@ -80,5 +91,6 @@ function draw() {
   }
 
   Engine.update(engine, 1000 / 60);
+  manage_particle_count();
 }
 
