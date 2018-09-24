@@ -10,7 +10,21 @@ var world;
 var particles = [];
 
 function setup() {
-  createCanvas(700, 600);
+  var main = $('body');
+
+  var canvas = createCanvas(main.width(), main.height());
+
+  var canvasSection = $('#canvasSection');
+  canvasSection.css('z-index' , '-1');
+
+  canvas.parent('#canvasSection');
+
+  canvasSection.css({
+    position: "absolute",
+    marginLeft: 0, marginTop: 0,
+    top: 0, left: 0
+  });
+
   colorMode(HSB);
   engine = Engine.create();
   world = engine.world;
@@ -22,7 +36,7 @@ function setup() {
 }
 
 function spawn_particles() {
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 250; i++) {
     particles.push(
       new Particle(
         random(100, width - 100),

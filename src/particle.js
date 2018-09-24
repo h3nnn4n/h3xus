@@ -17,7 +17,7 @@ function Particle(x, y, options_) {
 
   this.base_radius = 3;
   this.radius = this.base_radius;
-  this.distance_threshold = random(25, 75);
+  this.distance_threshold = random(25, 125);
 
   this.body = Bodies.circle(x, y, this.radius, options);
 
