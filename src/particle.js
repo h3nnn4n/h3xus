@@ -8,11 +8,9 @@ function Particle(x, y, options_) {
     this.fill_color = options.color;
     this.border_color = options.border_color;
   } else {
-    //this.fill_color = color(random() * 255, random() * 255, random() * 255);
-    //this.border_color = color(random() * 255, random() * 255, random() * 255);
     colorMode(HSB);
     this.fill_color = color(random(255), 127, random(100, 255));
-    this.border_color = color(random(255), 127, random(100, 255));
+    this.border_color = this.fill_color;
   }
 
   this.base_radius = 3;
