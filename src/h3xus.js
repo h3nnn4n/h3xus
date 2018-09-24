@@ -25,19 +25,23 @@ function setup() {
 
 function setup_canvas() {
   var main = $('body');
-
-  var canvas = createCanvas(main.width(), main.height());
-
   var canvasSection = $('#canvasSection');
-  canvasSection.css('z-index' , '-1');
 
-  canvas.parent('#canvasSection');
+  if (canvasSection.length > 0) {
+    var canvas = createCanvas(main.width(), main.height());
 
-  canvasSection.css({
-    position: "absolute",
-    marginLeft: 0, marginTop: 0,
-    top: 0, left: 0
-  });
+    canvasSection.css('z-index' , '-1');
+
+    canvas.parent('#canvasSection');
+
+    canvasSection.css({
+      position: "absolute",
+      marginLeft: 0, marginTop: 0,
+      top: 0, left: 0
+    });
+  } else {
+    createCanvas(700, 600);
+  }
 }
 
 function spawn_particles(n) {
