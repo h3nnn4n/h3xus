@@ -13,11 +13,11 @@ function Particle(x, y, options_) {
     this.border_color = this.fill_color;
   }
 
-  this.base_radius = 3;
+  this.base_radius = random(2, 4);
   this.radius = this.base_radius;
   this.distance_threshold = random(25, 125);
 
-  this.body = Bodies.circle(x, y, this.radius, options);
+  this.body = Bodies.circle(x, y, this.radius * random(3, 7), options);
 
   World.add(world, this.body);
 
@@ -96,7 +96,7 @@ function Particle(x, y, options_) {
 
     this.towards(
       vec,
-      0.00005
+      0.00025
     );
   };
 
